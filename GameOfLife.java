@@ -18,14 +18,14 @@ public class GameOfLife {
 	}
 	
 	// Reads the data file and prints the initial board.
-	private static void test1(String fileName) {
+	public static void test1(String fileName) {
 		int[][] board = read(fileName);
 		print(board);
 	}
 		
 	// Reads the data file, and runs a test that checks 
 	// the count and cellValue functions.
-	private static void test2(String fileName) {
+	public static void test2(String fileName) {
 		int[][] board = read(fileName);
 		int [][] arr = new int [board.length][board[0].length];
 		for (int n = 0; n < board.length ; n++){
@@ -43,7 +43,7 @@ public class GameOfLife {
 		
 	// Reads the data file, plays the game for Ngen generations, 
 	// and prints the board at the beginning of each generation.
-	private static void test3(String fileName, int Ngen) {
+	public static void test3(String fileName, int Ngen) {
 		int[][] board = read(fileName);
 		for (int gen = 0; gen < Ngen; gen++) {
 			System.out.println("Generation " + gen + ":");
@@ -53,7 +53,7 @@ public class GameOfLife {
 	}
 		
 	// Reads the data file and plays the game, for ever.
-	private static void play(String fileName) {
+	public static void play(String fileName) {
 		int[][] board = read(fileName);
 		while (true) {
 			show(board);
@@ -68,7 +68,7 @@ public class GameOfLife {
 	// and the rightmost columns. Thus the actual board is surrounded by a "frame" of zeros. You can think
 	// of this frame as representing the infinite number of dead cells that exist in every direction.
 	// This function assumes that the input file contains valid data, and does no input testing.
-	private static int[][] read(String fileName) {
+	public static int[][] read(String fileName) {
 		In in = new In(fileName); // Constructs an In object for reading the input file
 		int rows = Integer.parseInt(in.readLine());
 		int cols = Integer.parseInt(in.readLine());
@@ -92,7 +92,7 @@ public class GameOfLife {
 	// Creates a new board from the given board, using the rules of the game.
 	// Uses the cellValue(board,i,j) function to compute the value of each 
 	// cell in the new board. Returns the new board.
-	private static int[][] evolve(int[][] board) {
+	public static int[][] evolve(int[][] board) {
 		int [][] arr = new int [board.length][board[0].length];
 		for (int n = 0; n < board.length ; n++){
 			for (int m = 0; m < board[0].length ; m++){
@@ -116,7 +116,7 @@ public class GameOfLife {
 	// Assumes that i is at least 1 and at most the number of rows in the board - 1. 
 	// Assumes that j is at least 1 and at most the number of columns in the board - 1. 
 	// Uses the count(board,i,j) function to count the number of alive neighbors.
-	private static int cellValue(int[][] board, int i, int j) {
+	public static int cellValue(int[][] board, int i, int j) {
 				int numOfLiveAround = count(board, i, j);
 				int cellOldValue = board[i][j];
 				int cellNewValue = 0;
@@ -144,7 +144,7 @@ public class GameOfLife {
 	// (The cell itself is not counted).
 	// Assumes that i is at least 1 and at most the number of rows in the board - 1. 
 	// Assumes that j is at least 1 and at most the number of columns in the board - 1. 
-	private static int count(int[][] board, int i, int j) {
+	public static int count(int[][] board, int i, int j) {
 		int numOfLiveAround = 0;
 		for (int n = i - 1; n <= i + 1 ; n++){
 			for (int m = j - 1; m <= j + 1; m++){
@@ -161,7 +161,7 @@ public class GameOfLife {
 	}
 	
 	// Prints the board. Alive and dead cells are printed as 1 and 0, respectively.
-    private static void print(int[][] arr) {
+    public static void print(int[][] arr) {
 	for (int i = 1; i < (arr.length - 1); i++){
 		for (int j = 1; j < (arr[i].length - 1); j++){
 			System.out.printf("%4s" , arr[i][j]);
@@ -175,7 +175,7 @@ public class GameOfLife {
     // In order to handle any given board size, we scale the X and Y dimensions according to the board size.
     // This results in the following visual effect: The smaller the board, the larger the squares
 	// representing cells.
-	private static void show(int[][] board) {
+	public static void show(int[][] board) {
 		StdDraw.setCanvasSize(900, 900);
 		int rows = board.length;
 		int cols = board[0].length;
